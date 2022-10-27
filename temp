@@ -1,0 +1,15 @@
+    private static boolean enabled;
+    public KeyBinding keybind;
+
+
+
+
+    public abstract void onEnable();
+
+    public abstract void onDisable();
+
+    public abstract void onToggle();
+
+    public abstract void toggle();
+
+    public abstract boolean isEnabled();

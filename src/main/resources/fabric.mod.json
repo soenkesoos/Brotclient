@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "brotclient",
+  "version": "${version}",
+  "name": "Brotclient",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/brotclient/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "backstube.brotclient.Brotclient"
+    ]
+  },
+  "mixins": [
+    "brotclient.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}
