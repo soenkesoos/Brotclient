@@ -17,6 +17,9 @@ public class ModManager {
     public NoFall noFall;
     public FullBright fullBright;
     public BunnyHop bunnyHop;
+    public Fly fly;
+
+    public Strafe strafe;
 
 
 
@@ -30,6 +33,8 @@ public class ModManager {
         noFall = new NoFall();
         fullBright = new FullBright();
         bunnyHop = new BunnyHop();
+        fly = new Fly();
+        strafe = new Strafe();
 
 
         esp.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(esp.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
@@ -37,10 +42,13 @@ public class ModManager {
         tracers.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(tracers.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         antiHuman.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(antiHuman.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         boatFly.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(boatFly.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
+        boatFly.key2 = KeyBindingHelper.registerKeyBinding(new KeyBinding(boatFly.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_CONTROL, "Brotclient"));
         step.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(step.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         noFall.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(noFall.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         fullBright.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(fullBright.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
-        bunnyHop.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(bunnyHop.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "Brotclient"));
+        bunnyHop.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(bunnyHop.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
+        fly.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(fly.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "Brotclient"));
+        strafe.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(strafe.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_J, "Brotclient"));
 
 
         //the functions that are supposed to be executed
@@ -71,6 +79,12 @@ public class ModManager {
             }
             if (bunnyHop.keybind.wasPressed()) {
                 bunnyHop.toggle();
+            }
+            if (fly.keybind.wasPressed()) {
+                fly.toggle();
+            }
+            if (strafe.keybind.wasPressed()) {
+                strafe.toggle();
             }
 
         });

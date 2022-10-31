@@ -27,7 +27,8 @@ public class Boatfly {
                         motionX = vehicle.getVelocity().x * 1.1;
                         motionZ = vehicle.getVelocity().z * 1.1;
                     }
-                    motionY = MinecraftClient.getInstance().options.jumpKey.isPressed() ? 0.3 : 0.04;
+                    motionY = MinecraftClient.getInstance().options.jumpKey.isPressed() ? 0.3 : 0;
+                    motionY += MinecraftClient.getInstance().options.sneakKey.isPressed() ? -0.3 : 0;
                     vehicle.setVelocity(new Vec3d(motionX, motionY, motionZ));
                     System.out.println(velocity.x);
                 }
@@ -38,6 +39,7 @@ public class Boatfly {
 
     private static boolean enabled;
     public KeyBinding keybind;
+    public KeyBinding key2;
 
     public void onEnable() {
 
