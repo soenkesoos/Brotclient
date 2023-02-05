@@ -42,7 +42,7 @@ public class ModManager {
         tracers.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(tracers.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         antiHuman.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(antiHuman.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         boatFly.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(boatFly.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
-        boatFly.key2 = KeyBindingHelper.registerKeyBinding(new KeyBinding(boatFly.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_CONTROL, "Brotclient"));
+        boatFly.key2 = KeyBindingHelper.registerKeyBinding(new KeyBinding(boatFly.getClass().getSimpleName() + " sink", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_CONTROL, "Brotclient"));
         step.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(step.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         noFall.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(noFall.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         fullBright.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(fullBright.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));

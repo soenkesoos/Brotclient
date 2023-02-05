@@ -7,7 +7,11 @@
     "BlockMixin",
     "EntityMixin",
     "WorldRendererMixin",
-    "ClientPlayNetworkHandlerMixin"
+    "ClientPlayNetworkHandlerMixin",
+    "MinecraftClientMixin",
+    "PlayerPositionFullPacketMixin",
+    "PlayerPositionPacketMixin",
+    "WorldBorderMixin"
   ],
   "client": [
   ],

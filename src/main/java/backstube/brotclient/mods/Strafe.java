@@ -11,7 +11,7 @@ public class Strafe {
     public KeyBinding keybind;
 
     public void onEnable() {
-        mc.player.airStrafingSpeed = 1;
+        mc.player.airStrafingSpeed = 2000;
     }
 
     public void onDisable() {

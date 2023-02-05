@@ -5,20 +5,40 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.text.Text;
+import net.minecraft.world.GameMode;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import static backstube.brotclient.Brotclient.mc;
 
 public class AntiHuman {
 
     public AntiHuman(){
-        /*ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if(AntiHuman.enabled) {
-                mc.player.setPos(Math.round(mc.player.getX()*1000d)/1000d, mc.player.getY(), Math.round(mc.player.getZ()*1000d)/1000d);
-            }
-        });*/
+
     }
 
-    private static boolean enabled;
+    public static double roundCoordinate(double n) {
+        n = Math.round(n * 100) / 100d;  // Round to 1/100th
+        return n;
+    }
+
+    public static void onPositionPacket(Args args) {
+        if (!AntiHuman.isEnabled()) {
+            return;
+        }
+        double x = args.get(0);
+        double y = args.get(1);
+        double z = args.get(2);
+
+        // Round to 100ths for "Anti-Human" check
+        x = roundCoordinate(x);
+        z = roundCoordinate(z);
+
+        args.set(0, x);
+        args.set(1, y);
+        args.set(2, z);
+    }
+
+    private static boolean enabled = true;
     public KeyBinding keybind;
 
     public void onEnable() {
@@ -30,7 +50,7 @@ public class AntiHuman {
     }
 
     public void onToggle() {
-        MinecraftClient.getInstance().player.sendMessage(Text.literal(this.getClass().getSimpleName() + " " + isEnabled()), false);
+        mc.player.sendMessage(Text.literal(this.getClass().getSimpleName() + " " + isEnabled()), false);
     }
 
     public static boolean isEnabled() {return enabled;}
