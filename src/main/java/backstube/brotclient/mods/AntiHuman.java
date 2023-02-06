@@ -18,7 +18,7 @@ public class AntiHuman {
 
     public static double roundCoordinate(double n) {
         n = Math.round(n * 100) / 100d;  // Round to 1/100th
-        return n;
+        return Math.nextAfter(n, n + Math.signum(n));
     }
 
     public static void onPositionPacket(Args args) {
