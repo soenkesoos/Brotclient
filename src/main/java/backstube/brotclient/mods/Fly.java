@@ -1,21 +1,15 @@
 package backstube.brotclient.mods;
 
-import backstube.brotclient.mixins.PlayerPositionFullPacketMixin;
-import backstube.brotclient.mixins.PlayerPositionPacketMixin;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.entity.Entity;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
-import net.minecraft.network.packet.s2c.play.PlayerPositionLookS2CPacket;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 
-import static backstube.brotclient.Brotclient.mc;
+import static backstube.brotclient.Brotclient.client;
 
 public class Fly {
 
@@ -51,7 +45,13 @@ public class Fly {
                     motionY += MinecraftClient.getInstance().options.sneakKey.isPressed() ? -0.6 : 0;
                     player.setVelocity(new Vec3d(motionX, motionY, motionZ));
                 }
-                if (Fly.enabled && mode == "vanilla" && flyingTimer >= 70) {
+                //player.sendMessage(Text.of(String.valueOf(velocity.getY())), false);
+                if (flyingTimer>=50){
+                    player.sendMessage(Text.of(String.valueOf(player.getY())), false);
+                    player.sendMessage(Text.of("packet" + String.valueOf(player.getY() - velocity.getY()-5)), false);
+                }
+                if (Fly.enabled && mode == "vanilla" && flyingTimer >= 50) {
+                    player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(player.getX(), player.getY()-0.0433d, player.getZ(), player.isOnGround()));
                     flyingTimer = 0;
                 }
             flyingTimer++;
@@ -61,10 +61,10 @@ public class Fly {
 
     public void onEnable() {
         if(mode == "vanilla") {
-            mc.player.jump();
-            mc.interactionManager.setGameMode(GameMode.SURVIVAL);
-            mc.player.getAbilities().flying=true;
-            mc.player.getAbilities().setFlySpeed(0.1f);
+            client.player.jump();
+            client.interactionManager.setGameMode(GameMode.SURVIVAL);
+            client.player.getAbilities().flying=true;
+            client.player.getAbilities().setFlySpeed(0.1f);
 
         }
     }

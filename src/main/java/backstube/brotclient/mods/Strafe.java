@@ -4,18 +4,18 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.text.Text;
 
-import static backstube.brotclient.Brotclient.mc;
+import static backstube.brotclient.Brotclient.client;
 
 public class Strafe {
     private static boolean enabled;
     public KeyBinding keybind;
 
     public void onEnable() {
-        mc.player.airStrafingSpeed = 2000;
+        client.player.airStrafingSpeed = 2000;
     }
 
     public void onDisable() {
-        mc.player.airStrafingSpeed = 0.02f;
+        client.player.airStrafingSpeed = 0.02f;
     }
 
     public void onToggle() {

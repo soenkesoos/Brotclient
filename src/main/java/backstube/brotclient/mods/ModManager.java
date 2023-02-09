@@ -18,8 +18,8 @@ public class ModManager {
     public FullBright fullBright;
     public BunnyHop bunnyHop;
     public Fly fly;
-
     public Strafe strafe;
+    public FastBreak fastBreak;
 
 
 
@@ -35,6 +35,7 @@ public class ModManager {
         bunnyHop = new BunnyHop();
         fly = new Fly();
         strafe = new Strafe();
+        fastBreak = new FastBreak();
 
 
         esp.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(esp.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
@@ -48,7 +49,8 @@ public class ModManager {
         fullBright.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(fullBright.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         bunnyHop.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(bunnyHop.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
         fly.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(fly.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "Brotclient"));
-        strafe.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(strafe.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_J, "Brotclient"));
+        strafe.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(strafe.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
+        fastBreak.keybind = KeyBindingHelper.registerKeyBinding(new KeyBinding(fastBreak.getClass().getSimpleName(), InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "Brotclient"));
 
 
         //the functions that are supposed to be executed
@@ -85,6 +87,9 @@ public class ModManager {
             }
             if (strafe.keybind.wasPressed()) {
                 strafe.toggle();
+            }
+            if (fastBreak.keybind.wasPressed()) {
+                fastBreak.toggle();
             }
 
         });

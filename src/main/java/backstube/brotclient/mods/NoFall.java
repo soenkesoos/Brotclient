@@ -16,7 +16,7 @@ public class NoFall {
 
     public NoFall() {
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if(NoFall.isEnabled() && MinecraftClient.getInstance().player.getVelocity().y <= -0.5) {
+            if(NoFall.isEnabled() && MinecraftClient.getInstance().player.getVelocity().y <= -0.5 && !MinecraftClient.getInstance().player.isFallFlying()) {
                 MinecraftClient.getInstance().player.networkHandler.sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(true));
             }
         });

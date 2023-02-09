@@ -1,14 +1,10 @@
 package backstube.brotclient.mods;
 
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.text.Text;
-import net.minecraft.world.GameMode;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import static backstube.brotclient.Brotclient.mc;
+import static backstube.brotclient.Brotclient.client;
 
 public class AntiHuman {
 
@@ -50,7 +46,7 @@ public class AntiHuman {
     }
 
     public void onToggle() {
-        mc.player.sendMessage(Text.literal(this.getClass().getSimpleName() + " " + isEnabled()), false);
+        client.player.sendMessage(Text.literal(this.getClass().getSimpleName() + " " + isEnabled()), false);
     }
 
     public static boolean isEnabled() {return enabled;}
