@@ -47,8 +47,8 @@ public class Fly {
                 }
                 //player.sendMessage(Text.of(String.valueOf(velocity.getY())), false);
                 if (flyingTimer>=50){
-                    player.sendMessage(Text.of(String.valueOf(player.getY())), false);
-                    player.sendMessage(Text.of("packet" + String.valueOf(player.getY() - velocity.getY()-5)), false);
+                    //player.sendMessage(Text.of(String.valueOf(player.getY())), false);
+                    //player.sendMessage(Text.of("packet" + String.valueOf(player.getY() - velocity.getY()-5)), false);
                 }
                 if (Fly.enabled && mode == "vanilla" && flyingTimer >= 50) {
                     player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(player.getX(), player.getY()-0.0433d, player.getZ(), player.isOnGround()));

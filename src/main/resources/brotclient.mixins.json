@@ -12,7 +12,9 @@
     "PlayerPositionFullPacketMixin",
     "PlayerPositionPacketMixin",
     "VehicleMovePacketMixin",
-    "WorldBorderMixin"
+    "WorldBorderMixin",
+    "ClientConnectionAccessor",
+    "ClientPlayerInteractionMixin"
   ],
   "client": [
   ],
