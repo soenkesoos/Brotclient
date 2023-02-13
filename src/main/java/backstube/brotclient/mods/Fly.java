@@ -51,25 +51,30 @@ public class Fly {
                     //player.sendMessage(Text.of("packet" + String.valueOf(player.getY() - velocity.getY()-5)), false);
                 }
                 if (Fly.enabled && mode == "vanilla" && flyingTimer >= 50) {
-                    player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(player.getX(), player.getY()-0.0433d, player.getZ(), player.isOnGround()));
+                    player.setVelocity(velocity.getX(), -0.1, velocity.getZ());
+                }
+                if (Fly.enabled && mode == "vanilla" && flyingTimer >= 51) {
+                    player.setVelocity(velocity.getX(), 0, velocity.getZ());
                     flyingTimer = 0;
                 }
-            flyingTimer++;
+                //player.sendMessage(Text.of(String.valueOf(flyingTimer)));
+                flyingTimer++;
             }
         });
     }
 
-    public void onEnable() {
+    public static void onEnable() {
+        flyingTimer = 1;
         if(mode == "vanilla") {
-            client.player.jump();
             client.interactionManager.setGameMode(GameMode.SURVIVAL);
-            client.player.getAbilities().flying=true;
+            client.player.getAbilities().allowFlying = true;
             client.player.getAbilities().setFlySpeed(0.1f);
 
         }
+        Fly.enabled = true;
     }
 
-    public void onDisable() {
+    public static void onDisable() {
         MinecraftClient.getInstance().player.getAbilities().flying=false;
         Fly.enabled=false;
     }

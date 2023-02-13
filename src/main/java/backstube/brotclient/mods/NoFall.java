@@ -1,24 +1,32 @@
 package backstube.brotclient.mods;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public class NoFall {
-    private static boolean enabled;
+    private static boolean enabled = true;
     public KeyBinding keybind;
 
 
     public NoFall() {
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if(NoFall.isEnabled() && MinecraftClient.getInstance().player.getVelocity().y <= -0.5 && !MinecraftClient.getInstance().player.isFallFlying()) {
-                MinecraftClient.getInstance().player.networkHandler.sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(true));
+            if(client.player != null) {
+                if(client.player.fallDistance <= (client.player.isFallFlying() ? 1 : 2))
+                    return;
             }
+            if(client.player.isFallFlying() && client.player.isSneaking()
+                    && !(client.player.getVelocity().y < -0.5))
+                return;
+
+            client.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(true));
         });
     }
 
