@@ -53,8 +53,11 @@ public class Fly {
                 if (Fly.enabled && mode == "vanilla" && flyingTimer >= 50) {
                     player.setVelocity(velocity.getX(), -0.1, velocity.getZ());
                 }
-                if (Fly.enabled && mode == "vanilla" && flyingTimer >= 51) {
-                    player.setVelocity(velocity.getX(), 0, velocity.getZ());
+                if (Fly.enabled && mode == "vanilla" && flyingTimer >= 52) {
+                    player.setVelocity(velocity.getX(), 0.1, velocity.getZ());
+                }
+                if (Fly.enabled && mode == "vanilla" && flyingTimer >= 54) {
+                    player.setVelocity(velocity.getX(), 0.0, velocity.getZ());
                     flyingTimer = 0;
                 }
                 //player.sendMessage(Text.of(String.valueOf(flyingTimer)));
@@ -68,6 +71,7 @@ public class Fly {
         if(mode == "vanilla") {
             client.interactionManager.setGameMode(GameMode.SURVIVAL);
             client.player.getAbilities().allowFlying = true;
+            client.player.getAbilities().flying = true;
             client.player.getAbilities().setFlySpeed(0.1f);
 
         }
@@ -75,7 +79,9 @@ public class Fly {
     }
 
     public static void onDisable() {
+        MinecraftClient.getInstance().player.jump();
         MinecraftClient.getInstance().player.getAbilities().flying=false;
+        MinecraftClient.getInstance().player.getAbilities().allowFlying = false;
         Fly.enabled=false;
     }
 

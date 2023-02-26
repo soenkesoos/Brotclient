@@ -18,15 +18,15 @@ public class NoFall {
 
     public NoFall() {
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if(client.player != null) {
-                if(client.player.fallDistance <= (client.player.isFallFlying() ? 1 : 2))
+            if (client.player != null) {
+                if (client.player.fallDistance <= (client.player.isFallFlying() ? 1 : 2))
                     return;
-            }
-            if(client.player.isFallFlying() && client.player.isSneaking()
-                    && !(client.player.getVelocity().y < -0.5))
-                return;
+                if (client.player.isFallFlying() && client.player.isSneaking()
+                        && !(client.player.getVelocity().y < -0.5))
+                    return;
 
-            client.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(true));
+                client.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.OnGroundOnly(true));
+            }
         });
     }
 
